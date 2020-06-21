@@ -6,7 +6,7 @@
 # index.html should pass lint
 # (Optional) Build a simple integration test
 
-docker-build: docker build --tag=capstone .
+docker-build: docker build --tag=capstone2 .
 
 # docker-upload: 
 
