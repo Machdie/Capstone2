@@ -15,10 +15,8 @@ pipeline {
     }
 
     stage('Build Docker Image') {
-      steps {
-        sh '''
-                    cd Docker/
-                    bash build_docker.sh
+steps {
+                  sh 'docker build -t capstone2 .'
                 '''
       }
     }
