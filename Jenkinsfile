@@ -10,13 +10,10 @@ pipeline {
                 '''
             }
         }
-        stage('Lint docker/python') {
+        stage('Lint HTML') {
             steps {
-        	    sh '''
-                    cd Docker/
-        	        make lint
-                '''
-            }
+                      sh 'tidy -q -e *.html'
+              }
         }
 
 		stage('Build Docker Image') {
