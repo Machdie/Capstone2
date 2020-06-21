@@ -15,13 +15,14 @@ pipeline {
     }
 
     stage('Build Docker Image') {
-steps {
-                  sh 'docker build -t capstone2 .'
-                '''
-      }
-    }
+	  steps {
+		 sh 'docker build -t capstone2 .'
+					
+	  }
+	}
+	
 
-    stage('Push Docker Image') {
+	stage('Push Docker Image') {
       steps {
         withDockerRegistry(url: 'https://hub.docker.com/repository/docker/machdinho/capstone', credentialsId: 'dockerhub') {
           sh 'docker tag capstone-project machdinho/capstone'
@@ -30,8 +31,7 @@ steps {
 
       }
     }
-
-    stage('Config kubectl context') {
+	stage('Config kubectl context') {
       steps {
         withAWS(region: 'us-west-2', credentials: 'aws-esk') {
           sh '''
@@ -43,7 +43,7 @@ steps {
       }
     }
 
-    stage('Blue deploy') {
+	stage('Blue deploy') {
       steps {
         withAWS(region: 'us-west-2', credentials: 'aws-esk') {
           sh '''
@@ -54,7 +54,7 @@ steps {
       }
     }
 
-    stage('Green deploy') {
+	stage('Green deploy') {
       steps {
         withAWS(region: 'us-west-2', credentials: 'aws-esk') {
           sh '''
