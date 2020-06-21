@@ -4,10 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'echo "Build"'
-        sh '''
-                cd Docker/
-                make install
-                '''
+
       }
     }
 
