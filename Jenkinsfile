@@ -1,30 +1,42 @@
 pipeline {
-     agent any
-     stages {
-         stage('Build') {
-              steps {
-                  sh 'echo start building'
-              }
-         }
-         stage('Lint HTML') {
-              steps {
-                      sh 'tidy -q -e *.html'
-              }
-         }
-         stage('Build Docker Image') {
-              steps {
-                  sh 'docker build -t capstone.'
-              }
-         }
+	agent any 
+	stages {
+		stage('Build') {
+            steps {
+                sh 'echo "Build"'
+                sh '''
+                cd Docker/
+                make install
+                '''
+            }
+        }
+        stage('Lint docker/python') {
+            steps {
+        	    sh '''
+                    cd Docker/
+        	        make lint
+                '''
+            }
+        }
+
+		stage('Build Docker Image') {
+			steps {
+				sh '''
+                    cd Docker/
+                    bash build_docker.sh
+                '''
+			}
+		}
 		stage('Push Docker Image') {
 			steps {
 				withDockerRegistry([url: "https://hub.docker.com/repository/docker/machdinho/capstone", credentialsId: "dockerhub"]) {
 					sh "docker tag capstone-project machdinho/capstone"
 					sh 'docker push machdinho/capstone'
-               }
-         }      
-        } 
- /*stage('Create kubernetes cluster') {
+				}
+			}
+		}
+        
+        /*stage('Create kubernetes cluster') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-esk') {
 					sh '''
@@ -99,11 +111,4 @@ pipeline {
 			}
 		}
 	}
-        stage("Cleaning up") {
-              steps{
-                    echo 'Cleaning up...'
-                    sh "docker system prune"
-              }
-        }
-     }
 }
