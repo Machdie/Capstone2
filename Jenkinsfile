@@ -16,7 +16,7 @@ pipeline {
 
     stage('Build Docker Image') {
 	  steps {
-		 sh 'docker build -t capstone2 .'
+		 sh 'docker build -t capstone .'
 					
 	  }
 	}
@@ -25,7 +25,7 @@ pipeline {
 	stage('Push Docker Image') {
       steps {
         withDockerRegistry(url: 'https://hub.docker.com/repository/docker/machdinho/capstone', credentialsId: 'dockerhub') {
-          sh 'docker tag capstone-project machdinho/capstone'
+          sh 'docker tag capstone machdinho/capstone'
           sh 'docker push machdinho/capstone'
         }
 
