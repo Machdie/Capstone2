@@ -1,97 +1,49 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build') {
-      steps {
-        sh 'echo "Build"'
-
-      }
-    }
-
-    stage('Lint HTML') {
-      steps {
-        sh 'tidy -q -e *.html'
-      }
-    }
-
-    stage('Build Docker Image') {
-	  steps {
-		 sh 'docker build -t capstone .'
-					
-	  }
-	}
-	
-
-	stage('Push Docker Image') {
-      steps {
-        withDockerRegistry(url: 'https://hub.docker.com/repository/docker/machdinho/capstone', credentialsId: 'dockerhub') {
-          sh 'docker tag capstone machdinho/capstone'
-          sh 'docker push machdinho/capstone'
+     agent any
+     stages {
+         stage('Build') {
+              steps {
+                  sh 'echo Building...'
+              }
+         }
+         stage('Lint HTML') {
+              steps {
+                  sh 'tidy -q -e *.html'
+              }
+         }
+         stage('Build Docker Image') {
+              steps {
+                  sh 'docker build -t capstone0.9 .'
+              }
+         }
+         stage('Push Docker Image') {
+              steps {
+                  withDockerRegistry([url: "", credentialsId: "docker-hub"]) {
+                      sh "docker tag capstone-project-cloud-devops machdinho/capstone0.9"
+                      sh 'docker push machdinho/capstone0.9'
+                  }
+              }
+         }
+         stage('Deploying') {
+              steps{
+                  echo 'Deploying to AWS...'
+                  withAWS(credentials: 'aws', region: 'us-west-2') {
+                      sh "aws eks --region us-west-2 update-kubeconfig --name capstonecluster"
+                      sh "kubectl config use-context arn:aws:eks:us-west-2:988212813982:cluster/capstonecluster"
+                      sh "kubectl set image deployments/capstone0.9 capstone0.9=machdinho/capstone0.9:latest"
+                      sh "kubectl apply -f deployment/deployment.yml"
+                      sh "kubectl get nodes"
+                      sh "kubectl get deployment"
+                      sh "kubectl get pod -o wide"
+                      sh "kubectl get service/capstone0.9"
+                  }
+              }
         }
-
-      }
-    }
-	stage('Config kubectl context') {
-      steps {
-        withAWS(region: 'us-west-2', credentials: 'aws-esk') {
-          sh '''
-                        aws eks --region us-west-2 update-kubeconfig --name udacity-capstone-eks
-						kubectl config use-context arn:aws:eks:us-west-2:980543251014:cluster/udacity-capstone-eks
-					'''
+        stage("Cleaning up") {
+              steps{
+                    echo 'Cleaning up...'
+                    sh "docker system prune"
+              }
         }
-
-      }
-    }
-
-	stage('Blue deploy') {
-      steps {
-        withAWS(region: 'us-west-2', credentials: 'aws-esk') {
-          sh '''
-						kubectl apply -f ./controller_blue.json
-					'''
-        }
-
-      }
-    }
-
-	stage('Green deploy') {
-      steps {
-        withAWS(region: 'us-west-2', credentials: 'aws-esk') {
-          sh '''
-						kubectl apply -f ./controller_green.json
-					'''
-        }
-
-      }
-    }
-
-    stage('Load balancer for redirection to blue') {
-      steps {
-        withAWS(region: 'us-west-2', credentials: 'aws-esk') {
-          sh '''
-						kubectl apply -f ./green-blue.json
-					'''
-        }
-
-      }
-    }
-
-    stage('Notification with pause') {
-      steps {
-        input 'traffic goes to green'
-      }
-    }
-
-    stage('Load balancer for redirection to green') {
-      steps {
-        withAWS(region: 'us-west-2', credentials: 'aws-esk') {
-          sh '''
-						kubectl apply -f ./blue-green.json
-					'''
-        }
-
-      }
-    }
-
-  }
+     }
 }

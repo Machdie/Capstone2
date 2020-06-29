@@ -4,12 +4,12 @@
 
 # Step 1:
 # Build image and add a descriptive tag
-docker build --tag=capstone
+docker build -t capstone0.9 .
 
 # Step 2: 
 # List docker images
-docker image ls 
+docker images
 
 # Step 3: 
-# Run flask app
-docker run -p 8000:80 capstone
+# Run app
+docker run -p 80:80 capstone0.9
