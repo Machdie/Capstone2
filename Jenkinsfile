@@ -20,16 +20,16 @@ pipeline {
               steps {
                   withDockerRegistry([url: "", credentialsId: "dockerhub"]) {
                       sh "docker tag capstone0.9 machdinho/capstone0.9"
-                      sh 'docker push machdinho/capstone0.9'
+                      sh 'docker push machdinho/capstone0.9 '
                   }
               }
          }
          stage('Deploying') {
               steps{
                   echo 'Deploying to AWS...'
-                  withAWS(credentials: 'aws', region: 'us-west-2') {
+                  withAWS(credentials: 'aws-static', region: 'us-west-2') {
                       sh "aws eks --region us-west-2 update-kubeconfig --name capstonecluster"
-                      sh "kubectl config use-context arn:aws:eks:us-west-2:988212813982:cluster/capstonecluster"
+                      sh "kubectl config use-context arn:aws:eks:us-west-2:837039475813:cluster/CapstoneEKS-NTnhmLgtOFhA"
                       sh "kubectl set image deployments/capstone0.9 capstone0.9=machdinho/capstone0.9:latest"
                       sh "kubectl apply -f deployment/deployment.yml"
                       sh "kubectl get nodes"

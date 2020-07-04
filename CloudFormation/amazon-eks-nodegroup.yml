@@ -10,9 +10,7 @@ Parameters:
     Description: An image ID for EC2 Instance
     Type: String
 
-  KeyPairName:
-    Description: The EC2 Key Pair to allow SSH access to the instances
-    Type: AWS::EC2::KeyPair::KeyName
+
 
   DesiredInstances:
     Description: How many instances should be created.
@@ -129,7 +127,6 @@ Resources:
       IamInstanceProfile: !Ref InstanceProfile
       ImageId: !Ref ImageID
       InstanceType: t2.medium
-      KeyName: !Ref KeyPairName
       SecurityGroups:
         - !Ref NodesSecurityGroup
       BlockDeviceMappings:

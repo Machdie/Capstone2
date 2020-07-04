@@ -4,8 +4,7 @@
     "ParameterValue": "CapstoneProject"
   },
   {
-    "ParameterKey": "KeyPairName",
-    "ParameterValue": "custom-key-pair"
+
   },
   {
     "ParameterKey": "DesiredInstances",

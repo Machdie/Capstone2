@@ -1,6 +1,5 @@
 Description: >
-  Machdinho / Udacity Cloud DevOps
-  Capstone project for Cloud DevOps Engineering Nanodegree
+  Machdinho / Udacity Cloud DevOps Capstone 
 
 Parameters:
   EnvironmentName:
