@@ -6,7 +6,7 @@ pipeline {
                   sh 'echo Building...'
               }
          }
-         stage('Lint HTML') {
+         stage('Lint') {
               steps {
                   sh 'tidy -q -e *.html'
               }
