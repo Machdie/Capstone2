@@ -1,6 +1,5 @@
 Description: >
-  Capstone project for Cloud DevOps Engineering Nanodegree
-
+  Capstone
 
 Parameters:
   EnvironmentName:

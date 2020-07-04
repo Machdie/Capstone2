@@ -16,9 +16,9 @@ pipeline {
                   sh 'docker build -t capstone0.9 .'
               }
          }
-         stage('Push Docker Image') {
+         stage('Push Image to Dockerhub') {
               steps {
-                  withDockerRegistry([url: "", credentialsId: "docker-hub"]) {
+                  withDockerRegistry([url: "", credentialsId: "dockerhub"]) {
                       sh "docker tag capstone-project-cloud-devops machdinho/capstone0.9"
                       sh 'docker push machdinho/capstone0.9'
                   }
