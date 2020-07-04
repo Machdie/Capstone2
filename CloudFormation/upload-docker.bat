@@ -5,14 +5,14 @@
 
 # Step 1:
 # Create dockerpath
-dockerpath="sabbir33/capstone-app"
+dockerpath="machdinho/capstone0.9"
 
 
 # Step 2:  
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
-# docker login --username sabbir33
-docker image tag capstone-app $dockerpath
+# docker login --username  machdinho
+docker image tag capstone0.9 $dockerpath
 
 # Step 3:
 # Push image to a docker repository
