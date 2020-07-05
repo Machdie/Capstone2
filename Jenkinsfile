@@ -18,6 +18,7 @@ pipeline {
          }
          stage('Push Image to Dockerhub') {
               steps {
+                  echo 'Pushing Image....'
                   withDockerRegistry([url: "", credentialsId: "dockerhub"]) {
                       sh "docker tag capstone0.9 machdinho/capstone0.9"
                       sh 'docker push machdinho/capstone0.9 '
