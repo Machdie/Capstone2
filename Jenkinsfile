@@ -30,10 +30,13 @@ pipeline {
                   echo 'Deploying to AWS...'
                   withAWS(credentials: 'aws-static', region: 'us-west-2') {
                       sh "aws eks --region us-west-2 update-kubeconfig --name CapstoneEKS-NTnhmLgtOFhA"
-                    
+                      sh "kubectl config use-context arn:aws:eks:us-west-2:837039475813:cluster/CapstoneEKS-NTnhmLgtOFhA"
+                      sh "kubectl set image deployments/capstone0.9 capstone0.9=machdinho/capstone0.9:latest"
                       sh "kubectl apply -f deployment/deployment.yml"
                       sh "kubectl get nodes"
-                      sh "kubectl get pods -o wide"
+                      sh "kubectl get deployment"
+                      sh "kubectl get pod -o wide"
+                      sh "kubectl get service/capstone0.9"
                   }
               }
         }

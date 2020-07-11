@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: capstone0.9
+  name: capstone-machdie
   labels:
-    app: capstone0.9
+    app: capstone-machdie
   namespace: default
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: capstone0.9
+      app: capstone-machdie
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        app: capstone0.9
+        app: capstone-machdie
     spec:
       containers:
         - image: machdinho/capstone0.9
@@ -31,13 +31,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: capstone0.9
+  name: capstone-machdie
   labels:
-    app: capstone0.9
+    app: capstone-machdie
 spec:
   type: LoadBalancer
   selector:
-    app: capstone0.9
+    app: capstone-machdie
   ports:
     - port: 80
       targetPort: 80
