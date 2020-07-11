@@ -5,14 +5,14 @@
 
 # Step 1:
 # Create dockerpath
-dockerpath="machdinho/capstone0.9"
+dockerpath="machdinho/udacity-capstone"
 
 
 # Step 2:  
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
 # docker login --username  machdinho
-docker image tag capstone0.9 $dockerpath
+docker image tag udacity-capstone $dockerpath
 
 # Step 3:
 # Push image to a docker repository

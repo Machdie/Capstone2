@@ -4,7 +4,7 @@
 
 # Step 1:
 # Build image and add a descriptive tag
-docker build -t capstone0.9 .
+docker build -t udacity-capstone .
 
 # Step 2: 
 # List docker images
@@ -12,4 +12,4 @@ docker images
 
 # Step 3: 
 # Run app
-docker run -p 80:80 capstone0.9
+docker run -p 80:80 udacity-capstone

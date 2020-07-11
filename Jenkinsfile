@@ -31,7 +31,7 @@ pipeline {
                   withAWS(credentials: 'aws-static', region: 'us-west-2') {
                       sh "aws eks --region us-west-2 update-kubeconfig --name CapstoneEKS-NTnhmLgtOFhA"
                       sh "kubectl config use-context arn:aws:eks:us-west-2:837039475813:cluster/CapstoneEKS-NTnhmLgtOFhA"
-                      sh "kubectl apply -f deployment.yml"
+                      sh "kubectl apply -f deploy.yml"
                       sh "kubectl get nodes"
                       sh "kubectl get deployment"
                       sh "kubectl get pod -o wide"
