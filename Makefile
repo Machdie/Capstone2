@@ -6,7 +6,7 @@
 # index.html should pass lint
 # (Optional) Build a simple integration test
 
-docker-build: docker build --tag=capstone0.9 .
+docker-build: docker build --tag=udacity-capstone .
 
 # docker-upload: 
 

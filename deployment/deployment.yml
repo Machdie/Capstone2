@@ -23,7 +23,7 @@ spec:
       containers:
         - image: machdinho/udacity-capstone
           imagePullPolicy: Always
-          name: capstone0.9
+          name: udacity-capstone
           ports:
             - containerPort: 80
 
