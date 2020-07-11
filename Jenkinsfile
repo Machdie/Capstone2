@@ -38,12 +38,3 @@ pipeline {
                       sh "kubectl get service/udacity-capstone"
                   }
               }
-        }
-        stage("Cleaning up") {
-              steps{
-                    echo 'Cleaning up...'
-                    sh "docker system prune"
-              }
-        }
-     }
-}
