@@ -36,6 +36,6 @@ pipeline {
                       sh "kubectl get deployment"
                       sh "kubectl get pod -o wide"
                       sh "kubectl get service/udacity-capstone"
-                 echo 'Deplyoment sucessfull'
+                  echo 'Deplyoment sucessfull'
                   }
               }
