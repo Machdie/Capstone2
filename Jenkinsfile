@@ -34,6 +34,7 @@ pipeline {
 				sh 'aws eks --region us-west-2 update-kubeconfig --name CapstoneEKS-NTnhmLgtOFhA'
                 sh 'kubectl apply -f aws-auth-cm.yaml'
                 sh 'kubectl apply -f deploy.yml'
+                sh 'kubectl get pods'
                 sh 'kubectl describe deployment'
                 }
 			}
@@ -42,7 +43,6 @@ pipeline {
             steps {
                 withAWS(credentials: 'aws-static', region: 'us-west-2') {
                 sh 'kubectl set image deployments/udacitycapstone udacitycapstone=machdinho/udacitycapstone:latest'
-                sh 'kubectl rollout status deployment udacitycapstone'
                 sh 'kubectl get deployments'
                 }
 
