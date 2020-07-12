@@ -33,7 +33,7 @@ pipeline {
                 withAWS(credentials: 'aws-static', region: 'us-west-2') {
 				sh 'kubectl apply -f deploy.yml'
 				sh 'kubectl apply -f lb.yml'
-                sh 'kubectl set image udacitycapstone'
+                sh 'kubectl set image deployments/udacitycapstone'
                 sh 'kubectl get nodes'
                 sh 'kubectl get pod -o wide'
                 sh 'kubectl rollout status deployment udacitycapstone'
