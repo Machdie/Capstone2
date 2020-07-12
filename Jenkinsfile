@@ -31,7 +31,7 @@ pipeline {
 			steps {
                 echo 'Deploying Container to AWS...'
                 withAWS(credentials: 'aws-static', region: 'us-west-2') {
-				sh 'aws eks --region us-west-2 update-kubeconfig --name CapstoneEKS-NTnhmLgtOFhA'
+				sh 'aws eks --region us-west-2 update-kubeconfig --name CapstoneProject-EKS'
                 sh 'kubectl apply -f deploy.yml'
                 sh 'kubectl get nodes'
                 sh 'kubectl get pods'
