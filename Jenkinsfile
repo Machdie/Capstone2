@@ -36,10 +36,10 @@ pipeline {
                 sh 'kubectl apply -f deploy.yml'
 				sh 'kubectl apply -f lb.yml'
                 sh 'kubectl set image deployments/udacitycapstone udacitycapstone=machdinho/udacitycapstone:latest'
-                sh 'kubectl get nodes'
-                sh 'kubectl get pod -o wide'
                 sh 'kubectl rollout status deployment udacitycapstone'
                 sh 'kubectl describe deployment'
+                sh 'kubectl get nodes'
+                sh 'kubectl get pod -o wide'
                 }
 			}
 		}
