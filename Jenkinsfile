@@ -18,7 +18,7 @@ pipeline {
                   sh 'docker build -t udacitycapstone .'
               }
          }
-         stage('Push Image to Dockerhub') {
+         stage('Push to Dockerhub') {
               steps {
                   echo 'Pushing Image....'
                   withDockerRegistry([url: "", credentialsId: "dockerhub"]) {
