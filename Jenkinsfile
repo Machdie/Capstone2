@@ -31,11 +31,13 @@ pipeline {
 			steps {
                 echo 'Deploying Container to AWS...'
                 withAWS(credentials: 'aws-static', region: 'us-west-2') {
-				sh 'kubectl apply -f deployment.yml'
-				sh 'kubectl apply -f load-balancer.yml'
+				sh 'kubectl apply -f deploy.yml'
+				sh 'kubectl apply -f lb.yml'
                 sh 'kubectl set image udacitycapstone'
                 sh 'kubectl get nodes'
                 sh 'kubectl get pod -o wide'
+                sh 'kubectl rollout status deployment udacitycapstone'
+                sh 'kubectl describe deployment'
                 }
 			}
 		}
