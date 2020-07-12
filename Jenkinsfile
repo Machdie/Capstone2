@@ -27,22 +27,28 @@ pipeline {
                   }
               }
          }
-        stage('Deploying') {
+        stage('Deployment') {
 			steps {
                 echo 'Deploying Container to AWS...'
                 withAWS(credentials: 'aws-static', region: 'us-west-2') {
 				sh 'aws eks --region us-west-2 update-kubeconfig --name CapstoneEKS-NTnhmLgtOFhA'
-                sh 'kubectl config use-context arn:aws:eks:us-west-2:837039475813:cluster/CapstoneEKS-NTnhmLgtOFhA'
                 sh 'kubectl apply -f deploy.yml'
-				sh 'kubectl apply -f lb.yml'
-                sh 'kubectl set image deployments/udacitycapstone udacitycapstone=machdinho/udacitycapstone:latest'
-                sh 'kubectl rollout status deployment udacitycapstone'
-                sh 'kubectl describe deployment'
                 sh 'kubectl get nodes'
-                sh 'kubectl get pod -o wide'
+                sh 'kubectl get pods'
+                sh 'kubectl describe pods'
                 }
 			}
 		}
-    }
+        stage('Rolling Deployment') {
+            steps {
+                withAWS(credentials: 'aws-static', region: 'us-west-2') {
+                sh 'kubectl set image deployments/udacitycapstone udacitycapstone=machdinho/udacitycapstone:latest'
+                sh 'kubectl rollout status deployment/udacity-capstone'
+                sh 'kubectl get deployments'
+                }
+
+            }   
+        }
+     }        
 }
 
