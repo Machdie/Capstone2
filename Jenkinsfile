@@ -43,11 +43,17 @@ pipeline {
             steps {
                 withAWS(credentials: 'aws-static', region: 'us-west-2') {
                 sh 'kubectl set image deployments/udacitycapstone udacitycapstone=machdinho/udacitycapstone:latest'
-                sh 'kubectl rollout status deployment/udacity-capstone'
+                sh 'kubectl rollout status deployment udacity-capstone'
                 sh 'kubectl get deployments'
                 }
 
             }   
+        }
+        stage("Cleaning up") {
+            steps{
+                    echo 'Cleaning up...'
+                    sh 'docker system prune -y'
+            }        
         }
      }        
 }
