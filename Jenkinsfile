@@ -32,7 +32,7 @@ pipeline {
                 echo 'Deploying Container to AWS...'
                 withAWS(credentials: 'aws-static', region: 'us-west-2') {
 				sh 'aws eks --region us-west-2 update-kubeconfig --name CapstoneEKS-NTnhmLgtOFhA'
-                sh "kubectl apply -f kubernetes-confs/aws-auth-cm.yaml"
+                sh 'kubectl apply -f aws-auth-cm.yaml'
                 sh 'kubectl apply -f deploy.yml'
                 sh 'kubectl get nodes'
                 sh 'kubectl get pods'
