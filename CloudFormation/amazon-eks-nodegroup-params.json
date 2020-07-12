@@ -8,7 +8,7 @@
   },
   {
     "ParameterKey": "DesiredInstances",
-    "ParameterValue": "3"
+    "ParameterValue": "6"
   },
   {
     "ParameterKey": "ImageID",
@@ -20,6 +20,6 @@
   },
   {
     "ParameterKey": "MaxSize",
-    "ParameterValue": "4"
+    "ParameterValue": "6"
   }
 ]
