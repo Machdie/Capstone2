@@ -31,7 +31,7 @@ pipeline {
 			steps {
                 echo 'Deploying Container to AWS...'
                 withAWS(credentials: 'aws-static', region: 'us-west-2') {
-				sh 'aws eks --region us-west-2 update-kubeconfig --name CapstoneProject-EKS'
+				sh 'aws eks --region us-west-2 update-kubeconfig --name CapstoneEKS-NTnhmLgtOFhA'
                 sh 'kubectl apply -f deploy.yml'
                 sh 'kubectl get nodes'
                 sh 'kubectl get pods'
@@ -43,7 +43,7 @@ pipeline {
             steps {
                 withAWS(credentials: 'aws-static', region: 'us-west-2') {
                 sh 'kubectl set image deployments/udacitycapstone udacitycapstone=machdinho/udacitycapstone:latest'
-                sh 'kubectl rollout status deployment udacity-capstone'
+                sh 'kubectl rollout status deployment udacitycapstone'
                 sh 'kubectl get deployments'
                 }
 
