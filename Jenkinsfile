@@ -60,7 +60,8 @@ pipeline {
                 sh 'kubectl get pods -o wide'
                 sh 'kubectl describe deployment'
                 sh 'kubectl get service/udacitycapstone'
-                sh 'kubectl rollout status deployment udacitycapstone'
+                sh 'kubectl set image'
+                sh 'kubectl rollout status deployment udacitycapstone'               
                 }
 			}
 		}
