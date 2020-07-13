@@ -67,7 +67,7 @@ pipeline {
 			steps {
 				withAWS(credentials:'aws-static' , region:'us-west-2') {
 					sh 'kubectl set image deployment/udacitycapstone udacitycapstone=machdinho/udacitycapstone:latest'
-					sh 'kubectl rollout status deployment udacity'
+					sh 'kubectl rollout status deployment udacitycapstone'
 					sh 'kubectl get deployments'
 				}
 			}
