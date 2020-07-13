@@ -61,7 +61,7 @@ Resources:
           ToPort: 65535
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
-          FromPort: 1025
+          FromPort: 0
           ToPort: 65535
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
@@ -74,7 +74,7 @@ Resources:
           ToPort: 65535
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
-          FromPort: 1025
+          FromPort: 0
           ToPort: 65535
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
@@ -125,7 +125,7 @@ Resources:
       AssociatePublicIpAddress: "true"
       IamInstanceProfile: !Ref InstanceProfile
       ImageId: !Ref ImageID
-      InstanceType: t2.medium
+      InstanceType: t2.large
       SecurityGroups:
         - !Ref NodesSecurityGroup
       BlockDeviceMappings:

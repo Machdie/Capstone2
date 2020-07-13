@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udacity-capstone
+  name: udacitycapstone
   labels:
-    app: udacity-capstone
+    app: udacitycapstone
   namespace: default
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: udacity-capstone
+      app: udacitycapstone
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,12 +18,12 @@ spec:
   template:
     metadata:
       labels:
-        app: udacity-capstone
+        app: udacitycapstone
     spec:
       containers:
-        - image: machdinho/udacity-capstone
+        - image: machdinho/udacitycapstone
           imagePullPolicy: Always
-          name: udacity-capstone
+          name: udacitycapstone
           ports:
             - containerPort: 80
 
@@ -31,13 +31,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: udacity-capstone
+  name: udacitycapstone
   labels:
-    app: udacity-capstone
+    app: udacitycapstone
 spec:
   type: LoadBalancer
   selector:
-    app: udacity-capstone
+    app: udacitycapstone
   ports:
     - port: 80
       targetPort: 80

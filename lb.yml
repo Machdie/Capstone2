@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: udacity-capstone
+  name: udacitycapstone
   labels:
-    app: udacity-capstone
+    app: udacitycapstone
 spec:
   type: LoadBalancer
   selector:
-    app: udacity-capstone
+    app: udacitycapstone
   ports:
     - port: 80
       targetPort: 80

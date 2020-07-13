@@ -125,7 +125,7 @@ Resources:
       GroupDescription: Default security group for EKS.
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: 1025
+          FromPort: 0
           ToPort: 65535
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
@@ -134,7 +134,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       SecurityGroupEgress:
         - IpProtocol: tcp
-          FromPort: 1025
+          FromPort: 0
           ToPort: 65535
           CidrIp: 0.0.0.0/0
 

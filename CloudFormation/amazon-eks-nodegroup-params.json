@@ -3,16 +3,14 @@
     "ParameterKey": "EnvironmentName",
     "ParameterValue": "CapstoneProject"
   },
-  {
 
-  },
   {
     "ParameterKey": "DesiredInstances",
-    "ParameterValue": "6"
+    "ParameterValue": "4"
   },
   {
     "ParameterKey": "ImageID",
-    "ParameterValue": "ami-0d1cd67c26f5fca19"
+    "ParameterValue": "ami-0a243dbef00e96192"
   },
   {
     "ParameterKey": "MinSize",
@@ -20,6 +18,6 @@
   },
   {
     "ParameterKey": "MaxSize",
-    "ParameterValue": "6"
+    "ParameterValue": "4"
   }
 ]
