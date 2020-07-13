@@ -36,7 +36,6 @@ pipeline {
                 sh 'kubectl apply -f aws-auth-cm.yaml'
                 sh 'kubectl apply -f deploy.yml'
                 sh 'kubectl get nodes'
-                sh 'kubeclt get deployment'
                 sh 'kubectl get pods -o wide'
                 sh 'kubectl describe deployment'
                 sh 'kubectl get service/udacitycapstone'
