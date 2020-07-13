@@ -3,19 +3,22 @@ Machdie Udacity
 Setup Jenkins-Server:
 	Install all relevant Plugins e.g. BlueOcean, necessary AWS PLugins
 	Create Credentials for Dockerhub and AWS 
-Setup Infra:
-	with Scripts from cloudformation folder via AWS CLI
+Setup NW:
+	with Scripts (create, update, delete) from cloudformation folder via AWS CLI
 	NW
-	Cluster and Nodegroup
+
+EKS and Workernodes creation by jenkinsfile via eksctl
+
 Create Files:
 	Makefile
 	Dockerfile
 	Jenkinsfile
-		Pipeline: Build, Lint, Build Docker Image, Push Image to Dockerhub, Deploying
+		Pipeline: Build, Lint, Build Docker Image, Push Image to Dockerhub, Deploying, Rolling update (for submission screenshot)
 		
-Create yml:
-Load-balancer.yml
-Deployment.yml for rolling Deployment
+Create Deployment:
 
+Deployment.yml specify replicas, rollingupdate 
+
+Application:
 Use Index.html for simple Nginx “Hello World, my name is (student name)” application
 
