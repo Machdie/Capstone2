@@ -30,8 +30,7 @@ pipeline {
          /*stage('Create kubernetes cluster') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-static') {
-					sh '''
-						eksctl create cluster \
+					sh 'eksctl create cluster \
                             --name capstoneEks \
                             --version 1.16 \
                             --nodegroup-name standard-workers \
@@ -44,9 +43,7 @@ pipeline {
                             --zones us-west-2a \
                             --zones us-west-2b \
                             --zones us-west-2c \
-                        
-                        aws eks --region us-west-2 update-kubeconfig --name capstoneEks
-					'''
+                            aws eks --region us-west-2 update-kubeconfig --name capstoneEks'
 				}
 			}
 		}*/
@@ -59,6 +56,7 @@ pipeline {
                 sh 'kubectl apply -f aws-auth-cm.yaml'
                 sh 'kubectl apply -f deploy.yml'
                 sh 'kubectl get nodes'
+                sh 'kubectl get pods'
                 sh 'kubectl get pods -o wide'
                 sh 'kubectl describe deployment'
                 sh 'kubectl get service/udacitycapstone'
