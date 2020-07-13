@@ -54,7 +54,6 @@ pipeline {
 				sh 'aws eks --region us-west-2 update-kubeconfig --name capstoneEks'
                 sh 'kubectl config use-context arn:aws:eks:us-west-2:837039475813:cluster/capstoneEks'
                 sh 'kubectl apply -f aws-auth-cm.yaml'
-                sh 'kubectl set image udacitycapstone machdinho/udacitycapstone:latest'
                 sh 'kubectl apply -f deploy.yml'
                 sh 'kubectl get nodes'
                 sh 'kubectl get pods -o wide'
