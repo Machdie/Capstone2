@@ -27,7 +27,7 @@ pipeline {
                   }
               }
          }
-         stage('Create kubernetes cluster') {
+         /*stage('Create kubernetes cluster') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-static') {
 					sh '''
@@ -45,17 +45,17 @@ pipeline {
                             --zones us-west-2b \
                             --zones us-west-2c \
                         
-                        aws eks --region us-west-2 update-kubeconfig --name capstone2Eks
+                        aws eks --region us-west-2 update-kubeconfig --name capstoneEks
 					'''
 				}
 			}
-		}
+		}*/
         stage('Deploying') {
 			steps {
                 echo 'Deploying Container to AWS...'
                 withAWS(credentials: 'aws-static', region: 'us-west-2') {
-				sh 'aws eks --region us-west-2 update-kubeconfig --name CapstoneEKS-yc3ZzHbEDXDN'
-                sh 'kubectl config use-context arn:aws:eks:us-west-2:837039475813:cluster/CapstoneEKS-yc3ZzHbEDXDN'
+				sh 'aws eks --region us-west-2 update-kubeconfig --name capstoneEks'
+                sh 'kubectl config use-context arn:aws:eks:us-west-2:837039475813:cluster/capstoneEks'
                 sh 'kubectl apply -f aws-auth-cm.yaml'
                 sh 'kubectl apply -f deploy.yml'
                 sh 'kubectl get nodes'
