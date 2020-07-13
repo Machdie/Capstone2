@@ -66,7 +66,7 @@ pipeline {
          stage('Rolling update') {
 			steps {
 				withAWS(credentials:'aws-static' , region:'us-west-2') {
-					sh 'kubectl set image udacitycapstone udacitypcapstone=machdinho/udacitypcapstone:latest'
+					sh 'kubectl set image deployment/udacitycapstone udacitypcapstone=machdinho/udacitypcapstone:latest'
 					sh 'kubectl rollout status deployment udacity'
 					sh 'kubectl get deployments'
 				}
