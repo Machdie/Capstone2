@@ -57,13 +57,20 @@ pipeline {
                 sh 'kubectl set image udacitycapstone machdinho/udacitycapstone:latest'
                 sh 'kubectl apply -f deploy.yml'
                 sh 'kubectl get nodes'
-                sh 'kubectl get pods'
                 sh 'kubectl get pods -o wide'
+                sh 'kubectl describe pods'
                 sh 'kubectl describe deployment'
-                sh 'kubectl get service/udacitycapstone'
-                sh 'kubectl set image udacitycapstone'
-                sh 'kubectl rollout status deployment udacitycapstone'               
+                sh 'kubectl get service/udacitycapstone'            
                 }
+			}
+		}
+         stage('Rolling update') {
+			steps {
+				withAWS(credentials:'aws-static' , region:'us-west-2') {
+					sh 'kubectl set image udacitycapstone udacitypcapstone=machdinho/udacitypcapstone:latest'
+					sh 'kubectl rollout status deployment udacity'
+					sh 'kubectl get deployments'
+				}
 			}
 		}
      }
