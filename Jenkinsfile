@@ -27,14 +27,14 @@ pipeline {
                   }
               }
          }
-         /*stage('Create kubernetes cluster') {
-			steps {
+         stage('Create kubernetes cluster') {
+		steps {
 				withAWS(region:'us-west-2', credentials:'aws-static') {
 					sh 'eksctl create cluster \
-                            --name capstoneEks \
+                            --name udacityEKS \
                             --version 1.16 \
-                            --nodegroup-name standard-workers \
-                            --node-type t2.small \
+                            --nodegroup-name workers \
+                            --node-type t2.medium \
                             --nodes 2 \
                             --nodes-min 1 \
                             --nodes-max 3 \
@@ -43,16 +43,16 @@ pipeline {
                             --zones us-west-2a \
                             --zones us-west-2b \
                             --zones us-west-2c \
-                            aws eks --region us-west-2 update-kubeconfig --name capstoneEks'
+                     aws eks --region us-west-2 update-kubeconfig --name udacityEKS'
 				}
 			}
-		}*/
-        stage('Deploying') {
+		}
+     /*   stage('Deploying') {
 			steps {
                 echo 'Deploying Container to AWS...'
                 withAWS(credentials: 'aws-static', region: 'us-west-2') {
-				sh 'aws eks --region us-west-2 update-kubeconfig --name capstoneEks'
-                sh 'kubectl config use-context arn:aws:eks:us-west-2:837039475813:cluster/capstoneEks'
+				/* sh 'aws eks --region us-west-2 update-kubeconfig --name udacityEKS'
+                sh 'kubectl config use-context arn:aws:eks:us-west-2:837039475813:cluster/udacityEKS'
                 sh 'kubectl apply -f aws-auth-cm.yaml'
                 sh 'kubectl apply -f deploy.yml'
                 sh 'kubectl get nodes'
@@ -71,7 +71,7 @@ pipeline {
 					sh 'kubectl get deployments'
 				}
 			}
-		}
+		}*/
      }
         
 }
