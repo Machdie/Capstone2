@@ -59,7 +59,7 @@ pipeline {
                 sh 'kubectl get pods -o wide'
                 sh 'kubectl describe pods'
                 sh 'kubectl describe deployment'
-           
+                sh 'kubectl describe service'
                 }
 			}
 		}
