@@ -29,7 +29,7 @@ pipeline {
          }
         stage('Create kubernetes cluster') {
 		steps {
-				withAWS(credentials:'aws-static', region:'us-west-2') {
+				withAWS(credentials:'aws-static', region:'us-east-2') {
 					sh 'eksctl create cluster \
                             --name capstonecluster \
                             --version 1.16 \
@@ -39,10 +39,10 @@ pipeline {
                             --nodes-min 1 \
                             --nodes-max 3 \
                             --node-ami auto \
-                            --region us-west-2 \
-                            --zones us-west-2a \
-                            --zones us-west-2b \
-                            --zones us-west-2c \
+                            --region us-east-2 \
+                            --zones us-east-2a \
+                            --zones us-east-2b \
+                            --zones us-east-2c \
                      '
 				}
 			}
@@ -50,9 +50,9 @@ pipeline {
       /*  stage('Deploying') {
 			steps {
                 echo 'Deploying Container to AWS...'
-                withAWS(credentials: 'aws-static', region: 'us-west-2') {
-				sh 'aws eks --region us-west-2 update-kubeconfig --name capstonecluster'
-                sh 'kubectl config use-context arn:aws:eks:us-west-2:837039475813:cluster/capstonecluster'
+                withAWS(credentials: 'aws-static', region: 'us-east-2') {
+				sh 'aws eks --region us-east-2 update-kubeconfig --name capstonecluster'
+                sh 'kubectl config use-context arn:aws:eks:us-east-2:837039475813:cluster/capstonecluster'
                 sh 'kubectl apply -f aws-auth-cm.yaml'
                 sh 'kubectl apply -f deploy.yml'
                 sh 'kubectl get nodes'
