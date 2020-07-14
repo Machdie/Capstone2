@@ -27,7 +27,7 @@ pipeline {
                   }
               }
          }
-       stage('Create kubernetes cluster') {
+      /* stage('Create kubernetes cluster') {
 		steps {
 				withAWS(credentials:'aws-static', region:'us-east-2') {
 					sh 'eksctl create cluster \
@@ -46,8 +46,8 @@ pipeline {
                      '
 				}
 			}
-		} 
-      /*  stage('Deploying') {
+		} */
+        stage('Deploying') {
 			steps {
                 echo 'Deploying Container to AWS...'
                 withAWS(credentials: 'aws-static', region: 'us-east-2') {
@@ -72,7 +72,7 @@ pipeline {
 
 				}
 			}
-		}*/
+		}
 		
      }
         
