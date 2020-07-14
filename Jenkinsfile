@@ -27,7 +27,7 @@ pipeline {
                   }
               }
          }
-         stage('Create kubernetes cluster') {
+       /*  stage('Create kubernetes cluster') {
 		steps {
 				withAWS(credentials:'aws-static', region:'us-west-2') {
 					sh 'eksctl create cluster \
@@ -46,8 +46,8 @@ pipeline {
                      '
 				}
 			}
-		}
-     /*   stage('Deploying') {
+		}*/
+       stage('Deploying') {
 			steps {
                 echo 'Deploying Container to AWS...'
                 withAWS(credentials: 'aws-static', region: 'us-west-2') {
@@ -63,7 +63,8 @@ pipeline {
                 }
 			}
 		}
-         stage('Rolling update') {
+
+        stage('Rolling update') {
 			steps {
 				withAWS(credentials:'aws-static' , region:'us-west-2') {
 					sh 'kubectl set image deployment/udacitycapstone udacitycapstone=machdinho/udacitycapstone:latest'
@@ -71,7 +72,7 @@ pipeline {
 					sh 'kubectl get deployments'
 				}
 			}
-		}*/
+		}
      }
         
 }
