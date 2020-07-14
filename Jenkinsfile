@@ -35,7 +35,7 @@ pipeline {
                             --version 1.16 \
                             --nodegroup-name eksworkernodes \
                             --node-type t2.medium \
-                            --nodes 2 \
+                            --nodes 4 \
                             --nodes-min 1 \
                             --nodes-max 3 \
                             --node-ami auto \
