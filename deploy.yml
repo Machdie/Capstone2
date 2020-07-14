@@ -11,10 +11,10 @@ spec:
     matchLabels:
       app: udacitycapstone
   strategy:
-  type: RollingUpdate
+    type: RollingUpdate
     rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+        maxSurge: 1
+        maxUnavailable: 1
   template:
     metadata:
       labels:
