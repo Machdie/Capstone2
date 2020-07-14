@@ -31,7 +31,7 @@ pipeline {
 		steps {
 				withAWS(credentials:'aws-static', region:'us-west-2') {
 					sh 'eksctl create cluster \
-                            --name capstoneluster \
+                            --name capstonecluster \
                             --version 1.16 \
                             --nodegroup-name eksworkernodes \
                             --node-type t2.medium \
