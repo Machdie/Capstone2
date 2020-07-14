@@ -37,7 +37,7 @@ pipeline {
                             --node-type t2.medium \
                             --nodes 4 \
                             --nodes-min 1 \
-                            --nodes-max 3 \
+                            --nodes-max 4 \
                             --node-ami auto \
                             --region us-east-2 \
                             --zones us-east-2a \
@@ -46,8 +46,8 @@ pipeline {
                      '
 				}
 			}
-		}
-      /*   stage('Deploying') {
+		} 
+      /*  stage('Deploying') {
 			steps {
                 echo 'Deploying Container to AWS...'
                 withAWS(credentials: 'aws-static', region: 'us-east-2') {
@@ -69,7 +69,7 @@ pipeline {
 				withAWS(credentials:'aws-static' , region:'us-east-2') {
 					sh 'kubectl set image deployment/udacitycapstone udacitycapstone=machdinho/udacitycapstone:latest'
 					sh 'kubectl rollout status deployment udacitycapstone'
-					sh 'kubectl get deployments'
+
 				}
 			}
 		}*/
