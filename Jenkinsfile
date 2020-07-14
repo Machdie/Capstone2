@@ -27,13 +27,13 @@ pipeline {
                   }
               }
          }
-       /*  stage('Create kubernetes cluster') {
+        stage('Create kubernetes cluster') {
 		steps {
 				withAWS(credentials:'aws-static', region:'us-west-2') {
 					sh 'eksctl create cluster \
-                            --name ekscluster \
+                            --name capstoneluster \
                             --version 1.16 \
-                            --nodegroup-name eksworkers \
+                            --nodegroup-name eksworkernodes \
                             --node-type t2.medium \
                             --nodes 2 \
                             --nodes-min 1 \
@@ -46,13 +46,13 @@ pipeline {
                      '
 				}
 			}
-		}*/
-       stage('Deploying') {
+		}
+      /*  stage('Deploying') {
 			steps {
                 echo 'Deploying Container to AWS...'
                 withAWS(credentials: 'aws-static', region: 'us-west-2') {
-				sh 'aws eks --region us-west-2 update-kubeconfig --name ekscluster'
-                sh 'kubectl config use-context arn:aws:eks:us-west-2:837039475813:cluster/ekscluster'
+				sh 'aws eks --region us-west-2 update-kubeconfig --name capstonecluster'
+                sh 'kubectl config use-context arn:aws:eks:us-west-2:837039475813:cluster/capstonecluster'
                 sh 'kubectl apply -f aws-auth-cm.yaml'
                 sh 'kubectl apply -f deploy.yml'
                 sh 'kubectl get nodes'
@@ -72,7 +72,7 @@ pipeline {
 					sh 'kubectl get deployments'
 				}
 			}
-		}
+		}*/
      }
         
 }
