@@ -71,8 +71,8 @@ pipeline {
 					sh 'kubectl rollout status deployment udacitycapstone'
 					sh 'kubectl get deployments'
 				}
-			}
-		}*/
+			}*/
+		}
      }
         
 }
